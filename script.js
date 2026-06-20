@@ -7,7 +7,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
 // ---- Typing animation ----
 const typingEl = document.getElementById('typing');
-const roles = ['IT Security & Infrastructure Engineer', 'Vulnerability Management Specialist', 'Security Automation Engineer', 'Cloud Security Engineer'];
+const roles = ['IT Security & Infrastructure Engineer', 'Vulnerability Management Specialist', 'Security Automation Engineer'];
 let r = 0, c = 0, typingActive = true;
 
 function typeLoop() {
