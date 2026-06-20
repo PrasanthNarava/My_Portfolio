@@ -7,23 +7,44 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
 // ---- Typing animation ----
 const typingEl = document.getElementById('typing');
-const roles = ['IT Security & Infrastructure Engineer', 'Vulnerability Management Specialist', 'Security Automation Engineer'];
-let r = 0, c = 0, typingActive = true;
+const roles = [
+  'IT Security & Infrastructure Engineer',
+  'Vulnerability Management Specialist',
+  'Security Automation Engineer',
+  'Cloud Security Engineer'
+];
+
+let r = 0;
+let c = 0;
 
 function typeLoop() {
-  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  if (!typingEl) return;
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     typingEl.textContent = roles[0];
     return;
   }
+
+  if (c === 0) {
+    typingEl.textContent = '';
+  }
+
   if (c < roles[r].length) {
-    typingEl.textContent += roles[r].charAt(c++);
+    typingEl.textContent += roles[r].charAt(c);
+    c++;
     setTimeout(typeLoop, 80);
   } else {
     setTimeout(erase, 2000);
   }
 }
+
 function erase() {
-  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!typingEl) return;
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return;
+  }
+
   if (c > 0) {
     typingEl.textContent = roles[r].substring(0, c - 1);
     c--;
@@ -33,8 +54,8 @@ function erase() {
     setTimeout(typeLoop, 400);
   }
 }
-document.addEventListener('DOMContentLoaded', typeLoop);
 
+document.addEventListener('DOMContentLoaded', typeLoop);
 // ---- Mobile nav toggle (with ARIA) ----
 const hamburger = $('#hamburger');
 const nav = $('#navbar');
