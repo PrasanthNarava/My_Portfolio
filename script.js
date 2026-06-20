@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
       status.textContent = 'Sending...';
 
       // Replace service ID and template ID with your EmailJS values
-      const SERVICE_ID = 'service_pl7indj';
+      const SERVICE_ID = 'service_e1uha26';
       const TEMPLATE_ID = 'template_pscasoq';
 
       if (typeof emailjs === 'undefined') {
