@@ -4,6 +4,7 @@ const $$ = s => document.querySelectorAll(s);
 
 // Set current year
 document.getElementById('year').textContent = new Date().getFullYear();
+//Typing Animation
 
 const typingEl = document.getElementById('typing');
 const roles = [
@@ -15,19 +16,11 @@ const roles = [
 
 let r = 0;
 let c = 0;
-let typingStarted = false;
 
 function typeLoop() {
   if (!typingEl) return;
 
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    typingEl.textContent = roles[0];
-    return;
-  }
-
-  if (c === 0) {
-    typingEl.textContent = '';
-  }
+  if (c === 0) typingEl.textContent = '';
 
   if (c < roles[r].length) {
     typingEl.textContent += roles[r].charAt(c);
@@ -41,8 +34,6 @@ function typeLoop() {
 function erase() {
   if (!typingEl) return;
 
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
   if (c > 0) {
     typingEl.textContent = roles[r].substring(0, c - 1);
     c--;
@@ -53,12 +44,8 @@ function erase() {
   }
 }
 
-window.addEventListener('load', () => {
-  if (!typingStarted) {
-    typingStarted = true;
-    typeLoop();
-  }
-});
+window.addEventListener('load', typeLoop);
+
 // ---- Mobile nav toggle (with ARIA) ----
 const hamburger = $('#hamburger');
 const nav = $('#navbar');
